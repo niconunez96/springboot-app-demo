@@ -1,7 +1,6 @@
 language: java
 jdk: oraclejdk11
 script:
-        - cd demodeploy
         - "./mvnw test"
 deploy:
   provider: heroku

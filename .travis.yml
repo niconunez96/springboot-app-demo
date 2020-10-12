@@ -1,6 +1,11 @@
 language: java
 jdk: oraclejdk11
-
 script:
         - cd demodeploy
-        - ./mvnw test
+        - "./mvnw test"
+deploy:
+  provider: heroku
+  api_key:
+    secure: Dwn7ZzKBtmoGfA0VMaAwecXJbKWuOkL3AG3xy5Ba2y43Y40ouzupZfTGBVGVmG58jNMBUmh62NSh0xoFmIEdOyGdwGkR2vGf1MVRPlDPp/uDtkAU8YdsfYKY9zXTjMHBBlCZ1FgvDYGf9fLVXETQF2uFjYYO/O/paG+5yEDJBV/iDqxb27LHRLtstIUh/3qRsnNbkLfv4XaWLIrHXUYp9CO3KEga57OPfoXH4zwDc3i0OR+429jqZeLvbM0i3zgsWhv5cJMzFIp3iicdS5TV8b/EI43yChGF0BDEmJTnI6xVTEdy2P8Z6gVP94m9cCOjqBid0/9+yHIzY7L/KB8SytWgX+sGIyBSAhhJWiUUub2ziwMwiZNnZuQTIhkLYvD0wyFvkORusBY7015tTP3xBa+141FoMOxPm6774WgGnMh47mn4tgUJZtP80L5xeuSpoL1IbiVkPrV+RsAs2hAsYqo3NG4oiUqSrqc0CRCZouUCrafnozgAXntnPGwRy/DRSu/i2i4QJ0K66xuB0KGPuoPT28aC8m6YeYOUDPChjC2HeIo3D5z1yFcrObg1BYGdGBnSmZfHcWRVCjE4a/U+A+jTzBgS+HKR0WW9T/LC5dHyTDs+X+OWJifYqihXgwHaz0L3fuNDbFdJpx1E5Bnh8Y7S8X+nGUvW0fWVoep2aSM=
+  app:
+        main: app-alumno

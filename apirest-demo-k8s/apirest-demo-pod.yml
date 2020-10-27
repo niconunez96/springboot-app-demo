@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: apirest-demo-pod
+    labels:
+        component: web
+spec:
+    containers:
+        - name: client
+          image: nicolasnunez96/apirest-demo
+          ports:
+            - containerPort: 8080

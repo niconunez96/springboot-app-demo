@@ -1,6 +1,5 @@
 package com.taller.tpdeploy.controllers;
 
-import com.taller.tpdeploy.model.Alumno;
 import com.taller.tpdeploy.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -29,5 +29,5 @@ public class Alumno {
     private String email;
 
     @Temporal(TemporalType.DATE)
-    private Date createAt;
+    private Date createdAt;
 }

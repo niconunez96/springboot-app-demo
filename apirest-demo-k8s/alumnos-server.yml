@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alumnos-server-port
+spec:
+  type: NodePort
+  ports:
+    - port: 3050
+      targetPort: 8080
+      nodePort: 31515
+  selector:
+    app: alumnos-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: alumnos-server-deployment
+    labels:
+      app: alumnos-server
+spec:
+    replicas: 1
+    selector:
+      matchLabels:                    # This deployment applies to the Pods matching the specified labels
+        app: alumnos-server
+    template:                         # Template for the Pods in this deployment
+      metadata:
+        labels:                       # Labels to be applied to the Pods in this deployment
+          app: alumnos-server
+      spec:
+          containers:
+              - image: nicolasnunez96/apirest-demo:1.0
+                name: alumnos-server-app
+                ports:
+                  - containerPort: 8080
+                env:                  # Environment variables supplied to the Pod
+                  - name: MYSQL_USER # Name of the environment variable
+                    value: "apirest-user"
+                    #valueFrom:          # Get the value of environment variable from kubernetes secrets
+                    #  secretKeyRef:
+                    #    name: mysql-user-pass
+                    #    key: username
+                  - name: MYSQL_PASSWORD
+                    value: "1234"
+                    #valueFrom:
+                    #  secretKeyRef:
+                    #    name: mysql-user-pass
+                    #    key: password
+                  - name: MYSQL_DATABASE
+                    value: "db_alumnos"
+                    #valueFrom:
+                    #  secretKeyRef:
+                    #    name: mysql-db-url
+                    #    key: database
+                  - name: MYSQL_HOST
+                    value: "mysql-server-port"
+                    #valueFrom:
+                    #  secretKeyRef:
+                    #    name: mysql-db-url
+                    #    key: host
+                  - name: MYSQL_PORT
+                    value: "3306"
+                    #valueFrom:
+                    #  secretKeyRef:
+                    #    name: mysql-db-url
+                    #    key: port

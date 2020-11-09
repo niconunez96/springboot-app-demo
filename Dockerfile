@@ -8,4 +8,5 @@ RUN chmod +x /wait
 
 COPY ./target/*.jar app.jar
 
-CMD ["java", "-jar", "./app.jar"]
+ENV PORT 8080
+CMD ["java", "-jar", "-Dserver.port=${PORT}", "./app.jar"]

@@ -1,31 +1,30 @@
 version: "3"
 
 services:
-  mysql-client:
-      image: mysql:5.6
-      container_name: mysql-client
-      restart: always
-      environment:
-        - MYSQL_ROOT_PASSWORD=1234
-        - MYSQL_USER=dev_user
-        - MYSQL_PASSWORD=1234
-        - MYSQL_DATABASE=db_alumnos
-      expose:
-        - 3306
-
+  postgres-client:
+    image: postgres:9.6-alpine
+    container_name: postgres-client
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=dev_user
+      - POSTGRES_DB=db_alumnos
+    expose:
+      - 5432
   alumnos-app:
       container_name: alumnos-app
       build: .
       command: bash -c "/wait && java -jar app.jar"
       environment:
-        - MYSQL_HOST=mysql-client
-        - MYSQL_PORT=3306
-        - MYSQL_DATABASE=db_alumnos
-        - MYSQL_USER=dev_user
-        - MYSQL_PASSWORD=1234
-        - WAIT_HOSTS=mysql-client:3306
+        - DB_HOST=postgres-client
+        - DB_PORT=5432
+        - DB_NAME=db_alumnos
+        - DB_USER=dev_user
+        - DB_PASSWORD=1234
+        - WAIT_HOSTS=postgres-client:5432
+        - PORT=8080
       depends_on:
-        - mysql-client
+        - postgres-client
       restart: on-failure
       ports:
       - "8080:8080"

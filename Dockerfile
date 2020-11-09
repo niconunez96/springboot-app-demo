@@ -11,4 +11,4 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /alumnos-app/
 COPY --from=build /home/app/target/*.jar ./app.jar
 ENV PORT 8080
-CMD ["java","-jar","-Dserver.port=${PORT}","/app.jar"]
+CMD ["java","-jar","-Dserver.port=${PORT}","./app.jar"]

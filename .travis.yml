@@ -1,18 +1,16 @@
 language: java
 sudo: required
 services:
-  - docker
+- docker
 jdk: oraclejdk11
-
 before_install:
-  - docker run -d -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_USER=$DB_USER -e POSTGRES_DB=$DB_NAME -p 5432:5432 postgres:9.6-alpine
-
+- docker run -d -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_USER=$DB_USER -e POSTGRES_DB=$DB_NAME
+  -p 5432:5432 postgres:9.6-alpine
 script:
-  - "./wait-for-it.sh -t 0 localhost:$DB_PORT -- ./mvnw test"
-
+- "./wait-for-it.sh -t 0 localhost:$DB_PORT -- ./mvnw test"
 deploy:
   provider: heroku
   api_key:
-    secure: C3YFR+k57ceOw2KwgkSCwpd4zzC8Nmw//ntgq0ug+nejFQXKI6Ba7l0CfJpkHMXLYO6qX4jGiW4Ct9QErIfz/5eTPQTD9vENfqNrEU62g2UhsVtxkwoJDMKICjZeWKTn0J2NlIAgAksTjT/bnPXxPK5qPgJfQYjwxyO1LfOgk2FQ5f+ULSrtGKOYjzF6nEdOQIzcLBNYHDXkWI7XSxnSQET4HFdmNPpF3TZLXdxY9Fm7ROo/OQ1CmbcHDrMst8sLpOHw0u79LBMKtpCdCd+LniTTxQighFv+swyt8HlJnxsAuJQ6hRkuvTa5NOreg+HEFRaxoqJ/Zwy7psqN69bfAU1oj+R7GfmGbx0KAiz3UDfayT3pn+uOKl6ggmVQHto5j/7/NHTZl8XmQh9mBt0SVMvUptqpLmGa3AmFYr1bePDSeZhie1E1vzvI819HUS8uMDwizXAZiIFvatrNapmltbEfGbqAbLaRv3wwSjDYv0/bVrpV/S528iCFoLkJ82pHUaIeWHCe2/gN6SzIiGgPO+S0u4DjyesNnu9agBXlKcy0g7jja8gK4vbGsp8eqBrhtS8K+kOegktrJJI3SPdM3RlFQVeGebk2vvvqjXBSltvTkBkFR8MdyqUJK8LPo1HfGbP8FL5rKsMC76AP66G4vj1WcUFiQChdIkpcSuLuZyk=
+    secure: BEDdG4udd7Zf+F7kYvn1jnsE/9OTrfTeJGZ3lxkgl1mOa0c6C+bIOhtNsy1eeLoic10akLksOSM1bvP2UFwIG9NHWTEe3nl+Gb3OMliH5+73V0lY9yq3ICZkg+gNNo6sAgHsNLKVuy5N8/1VKVKscqOimTQA0xRBytOyiZHfCipeeB5/T5O3QRQ6UzCiDYK2UmJAhCgTrKRMzLti8WfmmcbC6RhJJSaHLBeqEXUFwp0t5IDfvYSgLXue+k7ngZRf620offpy4tAUEtDxb6axbDvK8U1oWpTBGGU47Sd+TparxDCikXwcz3zC4XiLC92F+It4cbshih+x+IvvahzvdDuZIFB0jh8xNRPYc8gKfC+ROciemL3yhXOELfaeXFTrfanQcmP99gfxGAdhxdkkko08aoX0RaTL0e2R3LcE1FCVrbM7a/7ZxiXAGazLcuKMmmaMJvA5ifVuBh7djLD3wkoVrsI6LXqQ2wnG7Uq3uFJM4fn+u5tYcTGwvwtC78/xYDypeV3BwwmLQI9+kcReAOhbhHQ0f7N3WcNsZ5pz2KkR6jtMWoCL2hitKiON9ybI8jkNWisYFZQBgidwoASfYHq8vjeMyacUYn+Sdk+c9wFV4bwt61GflLQs78ReHQGeH3jFhs2XBwvkTnEe+Djcx5EdHbxdoUK3B2+oSQdkI8k=
   app:
     main: app-alumno

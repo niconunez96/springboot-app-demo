@@ -1,18 +1,10 @@
 language: java
 sudo: required
 services:
-  - docker
+- docker
 jdk: oraclejdk11
-
 before_install:
-  - docker run -d -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_USER=$DB_USER -e POSTGRES_DB=$DB_NAME -p 5432:5432 postgres:9.6-alpine
-
+- docker run -d -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_USER=$DB_USER -e POSTGRES_DB=$DB_NAME
+  -p 5432:5432 postgres:9.6-alpine
 script:
-  - "./wait-for-it.sh -t 0 localhost:$DB_PORT -- ./mvnw test"
-
-deploy:
-  provider: heroku
-  api_key:
-    secure: C3YFR+k57ceOw2KwgkSCwpd4zzC8Nmw//ntgq0ug+nejFQXKI6Ba7l0CfJpkHMXLYO6qX4jGiW4Ct9QErIfz/5eTPQTD9vENfqNrEU62g2UhsVtxkwoJDMKICjZeWKTn0J2NlIAgAksTjT/bnPXxPK5qPgJfQYjwxyO1LfOgk2FQ5f+ULSrtGKOYjzF6nEdOQIzcLBNYHDXkWI7XSxnSQET4HFdmNPpF3TZLXdxY9Fm7ROo/OQ1CmbcHDrMst8sLpOHw0u79LBMKtpCdCd+LniTTxQighFv+swyt8HlJnxsAuJQ6hRkuvTa5NOreg+HEFRaxoqJ/Zwy7psqN69bfAU1oj+R7GfmGbx0KAiz3UDfayT3pn+uOKl6ggmVQHto5j/7/NHTZl8XmQh9mBt0SVMvUptqpLmGa3AmFYr1bePDSeZhie1E1vzvI819HUS8uMDwizXAZiIFvatrNapmltbEfGbqAbLaRv3wwSjDYv0/bVrpV/S528iCFoLkJ82pHUaIeWHCe2/gN6SzIiGgPO+S0u4DjyesNnu9agBXlKcy0g7jja8gK4vbGsp8eqBrhtS8K+kOegktrJJI3SPdM3RlFQVeGebk2vvvqjXBSltvTkBkFR8MdyqUJK8LPo1HfGbP8FL5rKsMC76AP66G4vj1WcUFiQChdIkpcSuLuZyk=
-  app:
-    main: app-alumno
+- "./wait-for-it.sh -t 0 localhost:$DB_PORT -- ./mvnw test"

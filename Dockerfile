@@ -1,12 +1,14 @@
-FROM openjdk:11
+# Build stage
+FROM maven:3.6.3-jdk-8-slim AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml -Dmaven.test.skip=true clean package
 
-WORKDIR /apirest-demo/
-
-## Add the wait script to the image
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
-RUN chmod +x /wait
-
-COPY ./target/*.jar app.jar
-
+#
+# Package stage
+#
+FROM openjdk:8-jdk-alpine
+WORKDIR /alumnos-app/
+COPY --from=build /home/app/target/*.jar ./app.jar
 ENV PORT 8080
-CMD ["java", "-jar", "-Dserver.port=${PORT}", "./app.jar"]
+CMD ["java","-jar","-Dserver.port=${PORT}","/app.jar"]

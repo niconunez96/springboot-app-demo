@@ -13,7 +13,9 @@ services:
       - 5432
   alumnos-app:
       container_name: alumnos-app
-      build: .
+      build:
+        context: .
+        dockerfile: Dockerfile.dev
       command: bash -c "/wait && java -jar app.jar"
       environment:
         - DB_HOST=postgres-client
@@ -22,7 +24,6 @@ services:
         - DB_USER=dev_user
         - DB_PASSWORD=1234
         - WAIT_HOSTS=postgres-client:5432
-        - PORT=8080
       depends_on:
         - postgres-client
       restart: on-failure

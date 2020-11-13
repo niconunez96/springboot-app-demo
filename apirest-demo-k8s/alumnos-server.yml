@@ -28,37 +28,37 @@ spec:
           app: alumnos-server
       spec:
           containers:
-              - image: nicolasnunez96/apirest-demo:1.0
+              - image: nicolasnunez96/apirest-demo:2.0
                 name: alumnos-server-app
                 ports:
                   - containerPort: 8080
                 env:                  # Environment variables supplied to the Pod
-                  - name: MYSQL_USER # Name of the environment variable
+                  - name: DB_USER # Name of the environment variable
                     value: "apirest-user"
                     #valueFrom:          # Get the value of environment variable from kubernetes secrets
                     #  secretKeyRef:
                     #    name: mysql-user-pass
                     #    key: username
-                  - name: MYSQL_PASSWORD
+                  - name: DB_PASSWORD
                     value: "1234"
                     #valueFrom:
                     #  secretKeyRef:
                     #    name: mysql-user-pass
                     #    key: password
-                  - name: MYSQL_DATABASE
+                  - name: DB_NAME
                     value: "db_alumnos"
                     #valueFrom:
                     #  secretKeyRef:
                     #    name: mysql-db-url
                     #    key: database
-                  - name: MYSQL_HOST
-                    value: "mysql-server-port"
+                  - name: DB_HOST
+                    value: "postgre-server-port"
                     #valueFrom:
                     #  secretKeyRef:
                     #    name: mysql-db-url
                     #    key: host
-                  - name: MYSQL_PORT
-                    value: "3306"
+                  - name: DB_PORT
+                    value: "5432"
                     #valueFrom:
                     #  secretKeyRef:
                     #    name: mysql-db-url

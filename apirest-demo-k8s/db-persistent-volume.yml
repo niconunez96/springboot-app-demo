@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume            # Create a PersistentVolume
 metadata:
-  name: mysql-pv
+  name: db-pv
   labels:
     type: local
 spec:
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim        # Create a PersistentVolumeClaim to request a PersistentVolume storage
 metadata:                          # Claim name and labels
-  name: mysql-pv-claim
+  name: db-pv-claim
   labels:
     app: apirest-alumno-app
 spec:                              # Access mode and resource limits

@@ -4,6 +4,8 @@
 [Heroku app](https://app-alumno.herokuapp.com/api/v1/alumnos)
 ##### Link documento
 [Documento Drive](https://docs.google.com/document/d/12PRIqCHs3IRWR-Vs16hX2VLF_d2pKQXB3I3Wryk1X-A/edit?usp=sharing)
+#### Link de la imagen en docker-hub
+[Docker hub](https://hub.docker.com/repository/docker/nicolasnunez96/apirest-demo)
 
 ## Descripción
 Demo de despliegue de una aplicación springboot, con Docker y Kubernetes
